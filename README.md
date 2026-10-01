@@ -40,11 +40,15 @@ cp .env.example .env   # then fill in your keys
 | Variable | Where to get it |
 | --- | --- |
 | `DATABASE_URL` | Neon dashboard → Connection Details → SQLAlchemy |
-| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | Google Cloud → APIs & Services → Credentials → OAuth client |
+| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | Google Cloud → Google Auth Platform → Credentials |
 | `MAILGUN_API_KEY` / `MAILGUN_DOMAIN` | Mailgun → Sending → Domains |
 
 The app logs a clear list of anything missing on startup, so you do not have to
 guess at silent failures.
+
+**[GOOGLE_SETUP.md](GOOGLE_SETUP.md) is the full step-by-step for Google sign-in** —
+the exact redirect URI to paste, plus fixes for the four errors you are most
+likely to hit.
 
 Seed the catalogue (safe to re-run, it skips if products already exist):
 
@@ -63,7 +67,8 @@ client:
 http://localhost:8000/api/auth/google/callback
 ```
 
-This must match `GOOGLE_REDIRECT_URI` in your `.env`.
+This must match `GOOGLE_REDIRECT_URI` in your `.env`. See
+[GOOGLE_SETUP.md](GOOGLE_SETUP.md) for the whole process.
 
 ### 3. Frontend
 
